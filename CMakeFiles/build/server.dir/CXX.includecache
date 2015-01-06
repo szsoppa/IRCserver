@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/szymon/Documents/informatyka/study/sieci komputerowe/src/server.cpp
+functions.h
+/Users/szymon/Documents/informatyka/study/sieci komputerowe/src/functions.h
+
+include/functions.h
+server.h
+include/server.h
+
+include/server.h
+stdio.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+netdb.h
+-
+stdlib.h
+-
+unistd.h
+-
+string.h
+-
+arpa/inet.h
+-
+pthread.h
+-
+errno.h
+-
+unistd.h
+-
+stdbool.h
+-
+
