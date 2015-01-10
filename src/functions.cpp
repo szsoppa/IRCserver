@@ -86,9 +86,13 @@ void recognize_message(Message message)
             break;
         case 1:
             if(user.login(message))
-                cout << "gitarka\n";
-            else 
-                cout << "Niestety :(\n";
+            {
+                // co jak się zaloguje
+            }
+            else
+            {
+                // co jak się nie zaloguje
+            }
         default:
             break;
     }
