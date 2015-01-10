@@ -12,20 +12,27 @@ void print_error( const char *message )
     exit(EXIT_FAILURE);
 }
 
-void* read_action( void* arg)
+void* find_action( void* arg)
 {
+    Message message;
     int rcv_sck = *( (int *) arg);
     int received;
     while ( true )
     {
-        while( (received = read (rcv_sck, bufor, BUFSIZE)) > 0)
+        received = read (rcv_sck, bufor, 1);
+        if (received == 0)
         {
-            if (bufor[0] == '.' && received==2)
-            {
-                close (rcv_sck);
+            // somethin went wrong
+        }
+        message.set_type((*bufor) - '0');
+        cout << message.get_type() << endl;
+        while( (received = read (rcv_sck, bufor, 1)) > 0)
+        {
+            if(*bufor == '\n')
                 break;
-            }
-            write (rcv_sck, bufor, received);
+            message.append_data(bufor);
+            cout << message.get_data() << endl;
+            //write (rcv_sck, bufor, received);
         }
     }
 }
@@ -59,13 +66,15 @@ void* main_loop( void *arg)
     {
         if ((rcv_sck = accept (sck, (struct sockaddr*) &client_addr, (socklen_t*) &rcv_len)) < 0)
             print_error("Error while connecting with client");
+        if (rcv_sck >= 0)
+            find_action(&rcv_sck);
 
-        if (pthread_create (&client_thread, NULL, read_action, &rcv_sck) != 0)
+        if (pthread_create (&client_thread, NULL, find_action, &rcv_sck) != 0)
             print_error("Thread create error");
 
     }
 
     close (sck);
-    printf ("Server terminated.");
+    cout << "Server terminated.";
     exit(EXIT_SUCCESS);
 }

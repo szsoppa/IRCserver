@@ -10,8 +10,10 @@ set(GCC_COVERAGE_COMPILE_FLAGS "-Wall")
 add_executable(build/server
   src/server.cpp
   src/functions.cpp
+  src/message.cpp
   include/server.h
   include/functions.h
+  include/message.h
 )
 
 target_link_libraries (build/server ${CMAKE_THREAD_LIBS_INIT})

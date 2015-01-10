@@ -3,6 +3,7 @@
 
 /* headers */
 #include <stdio.h>
+#include <iostream>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -19,5 +20,8 @@
 /* defines */
 #define QUEUE_LENGTH 15
 #define BUFSIZE 10000
+
+/* namespaces */
+using namespace std;
 
 #endif

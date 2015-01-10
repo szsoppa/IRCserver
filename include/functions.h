@@ -2,12 +2,14 @@
 #define FUNCTIONS_H
 
 #include "server.h"
+#include "message.h"
 
 /* Main server loop checks new clients and creates thread for connection */
-void* main_loop(void *arg);
+void *main_loop(void *arg);
 /* Action which takes place when server is listening for new clients */
-void* read_action(void* arg);
+void *find_action(void* arg);
 /* Prints error when occured */
 void print_error( const char *message );
 
+//void *
 #endif

@@ -4,8 +4,14 @@
 CMakeFiles/build/server.dir/src/functions.cpp.o
  /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/functions.cpp
  include/functions.h
+ include/message.h
+ include/server.h
+CMakeFiles/build/server.dir/src/message.cpp.o
+ /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/message.cpp
+ include/message.h
  include/server.h
 CMakeFiles/build/server.dir/src/server.cpp.o
  /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/server.cpp
  include/functions.h
+ include/message.h
  include/server.h
