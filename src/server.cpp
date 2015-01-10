@@ -8,5 +8,6 @@ int main(int argc, char **argv)
     cout << "Press enter Ctrl-c\n";
     main_loop(NULL);
 
+    remove("data/nicknames/nicknames.txt");
     return EXIT_SUCCESS;
 }

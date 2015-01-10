@@ -10,11 +10,14 @@ public:
     ~User();
 
     bool validate(Message message);
-    bool registration();
-    bool login(Message message);
+    bool signup();
+    bool signin(Message message);
+    bool check_unique_nickname();
+    void add_nickname_to_list();
 
 private:
     string nickname;
+    string login;
     string password;
 };
 

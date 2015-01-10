@@ -80,12 +80,12 @@ void recognize_message(Message message)
     User user;
     switch(message.get_type())
     {
-        case 0:
+        case 0: // User sign up
             if(user.validate(message))
-                user.registration();
+                user.signup();
             break;
-        case 1:
-            if(user.login(message))
+        case 1: // User sign in
+            if(user.signin(message))
             {
                 // co jak się zaloguje
             }
