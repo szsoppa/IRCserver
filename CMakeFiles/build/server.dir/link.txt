@@ -1,1 +1,0 @@
-/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/build/server.dir/src/server.cpp.o CMakeFiles/build/server.dir/src/functions.cpp.o CMakeFiles/build/server.dir/src/message.cpp.o CMakeFiles/build/server.dir/src/user.cpp.o  -o build/server  

@@ -39,11 +39,12 @@ void* main_loop( void *arg)
 
     while( true )
     {
+        cout << "siema\n";
         if ((rcv_sck = accept (sck, (struct sockaddr*) &client_addr, (socklen_t*) &rcv_len)) < 0)
             print_error("Error while connecting with client");
         if (rcv_sck >= 0)
             find_action(&rcv_sck);
-        close (sck);
+        close (rcv_sck);
         //if (pthread_create (&client_thread, NULL, find_action, &rcv_sck) != 0)
         //   print_error("Thread create error");
 
@@ -57,23 +58,22 @@ void* find_action( void* arg)
     Message message;
     int rcv_sck = *( (int *) arg);
     int received;
-    while ( true )
+
+    received = read (rcv_sck, &bufor, 1);
+    if (received == 0)
     {
-        received = read (rcv_sck, &bufor, 1);
-        if (received == 0)
-        {
-          // somethin went wrong
-        }
-        message.set_type(bufor - '0');
-        while( (received = read (rcv_sck, &bufor, 1)) > 0)
-        {
-            if(bufor == '\n')
-                break;
- 
-            message.append_data(&bufor);
-        }
-        recognize_message(message);
+      // somethin went wrong
     }
+    message.set_type(bufor - '0');
+    while( (received = read (rcv_sck, &bufor, 1)) > 0)
+    {
+        if(bufor == '\n')
+            break;
+
+        message.append_data(&bufor);
+    }
+    recognize_message(message); 
+    return NULL;
 }
 
 void recognize_message(Message message)
@@ -85,7 +85,7 @@ void recognize_message(Message message)
           if(user.validate(message))
           {
               cout << "Hello\n";
-            user.registration();
+              user.registration();
           }
           break;
         default:
