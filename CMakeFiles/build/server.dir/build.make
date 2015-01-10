@@ -35,10 +35,10 @@ RM = /usr/local/Cellar/cmake/3.0.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/szymon/Documents/informatyka/study/sieci komputerowe"
+CMAKE_SOURCE_DIR = /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/szymon/Documents/informatyka/study/sieci komputerowe"
+CMAKE_BINARY_DIR = /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server
 
 # Include any dependencies generated for this target.
 include CMakeFiles/build/server.dir/depend.make
@@ -51,17 +51,17 @@ include CMakeFiles/build/server.dir/flags.make
 
 CMakeFiles/build/server.dir/src/server.cpp.o: CMakeFiles/build/server.dir/flags.make
 CMakeFiles/build/server.dir/src/server.cpp.o: src/server.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/Users/szymon/Documents/informatyka/study/sieci komputerowe/CMakeFiles" $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/build/server.dir/src/server.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/build/server.dir/src/server.cpp.o -c "/Users/szymon/Documents/informatyka/study/sieci komputerowe/src/server.cpp"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/build/server.dir/src/server.cpp.o -c /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/server.cpp
 
 CMakeFiles/build/server.dir/src/server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/build/server.dir/src/server.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/Users/szymon/Documents/informatyka/study/sieci komputerowe/src/server.cpp" > CMakeFiles/build/server.dir/src/server.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/server.cpp > CMakeFiles/build/server.dir/src/server.cpp.i
 
 CMakeFiles/build/server.dir/src/server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/build/server.dir/src/server.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/Users/szymon/Documents/informatyka/study/sieci komputerowe/src/server.cpp" -o CMakeFiles/build/server.dir/src/server.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/server.cpp -o CMakeFiles/build/server.dir/src/server.cpp.s
 
 CMakeFiles/build/server.dir/src/server.cpp.o.requires:
 .PHONY : CMakeFiles/build/server.dir/src/server.cpp.o.requires
@@ -74,17 +74,17 @@ CMakeFiles/build/server.dir/src/server.cpp.o.provides.build: CMakeFiles/build/se
 
 CMakeFiles/build/server.dir/src/functions.cpp.o: CMakeFiles/build/server.dir/flags.make
 CMakeFiles/build/server.dir/src/functions.cpp.o: src/functions.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/Users/szymon/Documents/informatyka/study/sieci komputerowe/CMakeFiles" $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/build/server.dir/src/functions.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/build/server.dir/src/functions.cpp.o -c "/Users/szymon/Documents/informatyka/study/sieci komputerowe/src/functions.cpp"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/build/server.dir/src/functions.cpp.o -c /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/functions.cpp
 
 CMakeFiles/build/server.dir/src/functions.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/build/server.dir/src/functions.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/Users/szymon/Documents/informatyka/study/sieci komputerowe/src/functions.cpp" > CMakeFiles/build/server.dir/src/functions.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/functions.cpp > CMakeFiles/build/server.dir/src/functions.cpp.i
 
 CMakeFiles/build/server.dir/src/functions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/build/server.dir/src/functions.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/Users/szymon/Documents/informatyka/study/sieci komputerowe/src/functions.cpp" -o CMakeFiles/build/server.dir/src/functions.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/functions.cpp -o CMakeFiles/build/server.dir/src/functions.cpp.s
 
 CMakeFiles/build/server.dir/src/functions.cpp.o.requires:
 .PHONY : CMakeFiles/build/server.dir/src/functions.cpp.o.requires
@@ -123,6 +123,6 @@ CMakeFiles/build/server.dir/clean:
 .PHONY : CMakeFiles/build/server.dir/clean
 
 CMakeFiles/build/server.dir/depend:
-	cd "/Users/szymon/Documents/informatyka/study/sieci komputerowe" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/szymon/Documents/informatyka/study/sieci komputerowe" "/Users/szymon/Documents/informatyka/study/sieci komputerowe" "/Users/szymon/Documents/informatyka/study/sieci komputerowe" "/Users/szymon/Documents/informatyka/study/sieci komputerowe" "/Users/szymon/Documents/informatyka/study/sieci komputerowe/CMakeFiles/build/server.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles/build/server.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/build/server.dir/depend
 

@@ -1,1 +1,1 @@
-/Users/szymon/Documents/informatyka/study/sieci komputerowe/CMakeFiles/build/server.dir
+/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles/build/server.dir

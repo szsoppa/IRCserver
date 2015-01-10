@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/szymon/Documents/informatyka/study/sieci komputerowe/src/functions.cpp" "/Users/szymon/Documents/informatyka/study/sieci komputerowe/CMakeFiles/build/server.dir/src/functions.cpp.o"
-  "/Users/szymon/Documents/informatyka/study/sieci komputerowe/src/server.cpp" "/Users/szymon/Documents/informatyka/study/sieci komputerowe/CMakeFiles/build/server.dir/src/server.cpp.o"
+  "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/functions.cpp" "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles/build/server.dir/src/functions.cpp.o"
+  "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/server.cpp" "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles/build/server.dir/src/server.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

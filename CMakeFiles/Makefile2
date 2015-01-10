@@ -47,10 +47,10 @@ RM = /usr/local/Cellar/cmake/3.0.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/szymon/Documents/informatyka/study/sieci komputerowe"
+CMAKE_SOURCE_DIR = /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/szymon/Documents/informatyka/study/sieci komputerowe"
+CMAKE_BINARY_DIR = /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server
 
 #=============================================================================
 # Target rules for target CMakeFiles/build/server.dir
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = "/Users/szymon/Documents/informatyka/study/sieci komputerowe"
 CMakeFiles/build/server.dir/all:
 	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/depend
 	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report "/Users/szymon/Documents/informatyka/study/sieci komputerowe/CMakeFiles"  1 2
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles  1 2
 	@echo "Built target build/server"
 .PHONY : CMakeFiles/build/server.dir/all
 
@@ -69,9 +69,9 @@ all: CMakeFiles/build/server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/build/server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/szymon/Documents/informatyka/study/sieci komputerowe/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/build/server.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/szymon/Documents/informatyka/study/sieci komputerowe/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles 0
 .PHONY : CMakeFiles/build/server.dir/rule
 
 # Convenience name for target.
