@@ -118,11 +118,35 @@ CMakeFiles/build/server.dir/src/message.cpp.o.provides: CMakeFiles/build/server.
 
 CMakeFiles/build/server.dir/src/message.cpp.o.provides.build: CMakeFiles/build/server.dir/src/message.cpp.o
 
+CMakeFiles/build/server.dir/src/user.cpp.o: CMakeFiles/build/server.dir/flags.make
+CMakeFiles/build/server.dir/src/user.cpp.o: src/user.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/build/server.dir/src/user.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/build/server.dir/src/user.cpp.o -c /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/user.cpp
+
+CMakeFiles/build/server.dir/src/user.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/build/server.dir/src/user.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/user.cpp > CMakeFiles/build/server.dir/src/user.cpp.i
+
+CMakeFiles/build/server.dir/src/user.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/build/server.dir/src/user.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/user.cpp -o CMakeFiles/build/server.dir/src/user.cpp.s
+
+CMakeFiles/build/server.dir/src/user.cpp.o.requires:
+.PHONY : CMakeFiles/build/server.dir/src/user.cpp.o.requires
+
+CMakeFiles/build/server.dir/src/user.cpp.o.provides: CMakeFiles/build/server.dir/src/user.cpp.o.requires
+	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/src/user.cpp.o.provides.build
+.PHONY : CMakeFiles/build/server.dir/src/user.cpp.o.provides
+
+CMakeFiles/build/server.dir/src/user.cpp.o.provides.build: CMakeFiles/build/server.dir/src/user.cpp.o
+
 # Object files for target build/server
 build/server_OBJECTS = \
 "CMakeFiles/build/server.dir/src/server.cpp.o" \
 "CMakeFiles/build/server.dir/src/functions.cpp.o" \
-"CMakeFiles/build/server.dir/src/message.cpp.o"
+"CMakeFiles/build/server.dir/src/message.cpp.o" \
+"CMakeFiles/build/server.dir/src/user.cpp.o"
 
 # External object files for target build/server
 build/server_EXTERNAL_OBJECTS =
@@ -130,6 +154,7 @@ build/server_EXTERNAL_OBJECTS =
 build/server: CMakeFiles/build/server.dir/src/server.cpp.o
 build/server: CMakeFiles/build/server.dir/src/functions.cpp.o
 build/server: CMakeFiles/build/server.dir/src/message.cpp.o
+build/server: CMakeFiles/build/server.dir/src/user.cpp.o
 build/server: CMakeFiles/build/server.dir/build.make
 build/server: CMakeFiles/build/server.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable build/server"
@@ -142,6 +167,7 @@ CMakeFiles/build/server.dir/build: build/server
 CMakeFiles/build/server.dir/requires: CMakeFiles/build/server.dir/src/server.cpp.o.requires
 CMakeFiles/build/server.dir/requires: CMakeFiles/build/server.dir/src/functions.cpp.o.requires
 CMakeFiles/build/server.dir/requires: CMakeFiles/build/server.dir/src/message.cpp.o.requires
+CMakeFiles/build/server.dir/requires: CMakeFiles/build/server.dir/src/user.cpp.o.requires
 .PHONY : CMakeFiles/build/server.dir/requires
 
 CMakeFiles/build/server.dir/clean:

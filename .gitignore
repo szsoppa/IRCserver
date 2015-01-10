@@ -29,6 +29,9 @@
 *.app
 build/*
 
+# Data
+data
+
 #CMake
 CMakeFiles
 cmake_install.cmake

@@ -46,13 +46,15 @@ vector<string> Message::split()
 
     for( string::iterator it=this->data.begin(); it!=this->data.end(); ++it)
     {
-        while( *it != ',' )
+        if(*it == ',')
         {
-            temp.push_back(*it);
-            it++;
+            cout << temp << endl;
+            message.push_back(temp);
+            temp.clear();
+            continue;
         }
-        message.push_back(temp);
-        temp.clear();
+        temp.push_back(*it);
     }
+    this->data.clear();
     return message;
 }

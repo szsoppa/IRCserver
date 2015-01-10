@@ -2,7 +2,7 @@
 
 /* global variables */
 const char *protocol = "tcp";
-char bufor[BUFSIZE];
+char bufor;
 ushort service_port = 4000;
 pthread_mutex_t sock_mutex = PTHREAD_MUTEX_INITIALIZER;
 
@@ -43,13 +43,11 @@ void* main_loop( void *arg)
             print_error("Error while connecting with client");
         if (rcv_sck >= 0)
             find_action(&rcv_sck);
-
-        if (pthread_create (&client_thread, NULL, find_action, &rcv_sck) != 0)
-            print_error("Thread create error");
+        close (sck);
+        //if (pthread_create (&client_thread, NULL, find_action, &rcv_sck) != 0)
+        //   print_error("Thread create error");
 
     }
-
-    close (sck);
     cout << "Server terminated.";
     exit(EXIT_SUCCESS);
 }
@@ -61,19 +59,18 @@ void* find_action( void* arg)
     int received;
     while ( true )
     {
-        received = read (rcv_sck, bufor, 1);
+        received = read (rcv_sck, &bufor, 1);
         if (received == 0)
         {
           // somethin went wrong
         }
-        message.set_type((*bufor) - '0');
-        cout << message.get_type() << endl;
-        while( (received = read (rcv_sck, bufor, 1)) > 0)
+        message.set_type(bufor - '0');
+        while( (received = read (rcv_sck, &bufor, 1)) > 0)
         {
-            if(*bufor == '\n')
-              break;
-              message.append_data(bufor);
-              cout << message.get_data() << endl;
+            if(bufor == '\n')
+                break;
+ 
+            message.append_data(&bufor);
         }
         recognize_message(message);
     }
@@ -81,15 +78,17 @@ void* find_action( void* arg)
 
 void recognize_message(Message message)
 {
+    User user;
     switch(message.get_type())
     {
         case 0:
-          User user;
           if(user.validate(message))
-            user.register;
+          {
+              cout << "Hello\n";
+            user.registration();
+          }
           break;
-        case 1:
-
+        default:
           break;
     }
 }

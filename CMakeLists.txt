@@ -11,9 +11,11 @@ add_executable(build/server
   src/server.cpp
   src/functions.cpp
   src/message.cpp
+  src/user.cpp
   include/server.h
   include/functions.h
   include/message.h
+  include/user.h
 )
 
 target_link_libraries (build/server ${CMAKE_THREAD_LIBS_INIT})

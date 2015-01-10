@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/szymon/Documents/informatyka/study/sieci_komputerowe/s
 CMakeFiles/build/server.dir/all:
 	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/depend
 	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles  1 2 3
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles  1 2 3 4
 	@echo "Built target build/server"
 .PHONY : CMakeFiles/build/server.dir/all
 
@@ -69,7 +69,7 @@ all: CMakeFiles/build/server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/build/server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/build/server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles 0
 .PHONY : CMakeFiles/build/server.dir/rule

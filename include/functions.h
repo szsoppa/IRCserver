@@ -1,8 +1,9 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-#include "server.h"
+#include "user.h"
 #include "message.h"
+#include "server.h"
 
 /* Main server loop checks new clients and creates thread for connection */
 void *main_loop(void *arg);
@@ -12,4 +13,5 @@ void *find_action(void* arg);
 void print_error( const char *message );
 /* Recognizes message and performe response */
 void recognize_message(Message message);
+
 #endif

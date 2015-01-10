@@ -10,19 +10,13 @@
 functions.h
 /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/functions.h
 
-/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/message.cpp
-message.h
-/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/message.h
-
-/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/server.cpp
-functions.h
-/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/functions.h
-
 include/functions.h
-server.h
-include/server.h
+user.h
+include/user.h
 message.h
 include/message.h
+server.h
+include/server.h
 
 include/message.h
 server.h
@@ -61,4 +55,10 @@ list
 -
 vector
 -
+fstream
+-
+
+include/user.h
+message.h
+include/message.h
 

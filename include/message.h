@@ -1,6 +1,7 @@
-#include "server.h"
+#ifndef MESSAGE_H
+#define MESSAGE_H
 
-using namespace std;
+#include "server.h"
 
 class Message
 {
@@ -22,3 +23,5 @@ private:
     int type;
     string data;
 };
+
+#endif

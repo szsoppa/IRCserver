@@ -6,6 +6,7 @@ CMakeFiles/build/server.dir/src/functions.cpp.o
  include/functions.h
  include/message.h
  include/server.h
+ include/user.h
 CMakeFiles/build/server.dir/src/message.cpp.o
  /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/message.cpp
  include/message.h
@@ -15,3 +16,9 @@ CMakeFiles/build/server.dir/src/server.cpp.o
  include/functions.h
  include/message.h
  include/server.h
+ include/user.h
+CMakeFiles/build/server.dir/src/user.cpp.o
+ /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/user.cpp
+ include/message.h
+ include/server.h
+ include/user.h

@@ -1,4 +1,6 @@
-#include "server.h"
+#ifndef USER_H
+#define USER_H
+
 #include "message.h"
 
 class User
@@ -8,6 +10,12 @@ public:
     ~User();
 
     bool validate(Message message);
-    bool register(Message message);
+    bool registration();
     bool login(Message message);
+
+private:
+    string nickname;
+    string password;
 };
+
+#endif
