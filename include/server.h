@@ -20,6 +20,7 @@
 #include <list>
 #include <vector>
 #include <fstream>
+#include <sstream>
 
 /* defines */
 #define QUEUE_LENGTH 15

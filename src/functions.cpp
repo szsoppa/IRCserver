@@ -39,7 +39,6 @@ void* main_loop( void *arg)
 
     while( true )
     {
-        cout << "siema\n";
         if ((rcv_sck = accept (sck, (struct sockaddr*) &client_addr, (socklen_t*) &rcv_len)) < 0)
             print_error("Error while connecting with client");
         if (rcv_sck >= 0)
@@ -82,13 +81,15 @@ void recognize_message(Message message)
     switch(message.get_type())
     {
         case 0:
-          if(user.validate(message))
-          {
-              cout << "Hello\n";
-              user.registration();
-          }
-          break;
+            if(user.validate(message))
+                user.registration();
+            break;
+        case 1:
+            if(user.login(message))
+                cout << "gitarka\n";
+            else 
+                cout << "Niestety :(\n";
         default:
-          break;
+            break;
     }
 }

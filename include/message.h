@@ -18,6 +18,7 @@ public:
     const string get_data();
 
     // class functionality
+    void clear();
     vector<string> split();
 private:
     int type;

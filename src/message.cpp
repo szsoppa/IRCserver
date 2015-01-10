@@ -39,6 +39,12 @@ const string Message::get_data()
     return this->data;
 }
 
+void Message::clear()
+{
+    this->data.clear();
+    this->type = -1;
+}
+
 vector<string> Message::split()
 {
     string temp;
@@ -48,7 +54,6 @@ vector<string> Message::split()
     {
         if(*it == ',')
         {
-            cout << temp << endl;
             message.push_back(temp);
             temp.clear();
             continue;
