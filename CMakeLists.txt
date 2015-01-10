@@ -18,4 +18,9 @@ add_executable(build/server
   include/user.h
 )
 
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/build)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data/nicknames)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data/users)
+
 target_link_libraries (build/server ${CMAKE_THREAD_LIBS_INIT})

@@ -62,7 +62,6 @@ bool User::signin(Message message)
         {
             add_nickname_to_list();
         }
-        
     }
     file.close();
     return true;
