@@ -70,7 +70,6 @@ bool User::signin(Message message)
 
 bool User::check_unique_nickname()
 {
-    cout << "siema" << endl;
     ofstream f;
     f.open ("data/nicknames/nicknames.txt", fstream::app);
     f.close();
@@ -79,7 +78,6 @@ bool User::check_unique_nickname()
     {
         size_t pos = line.find(',');      
         line = line.substr(0,pos);
-        cout << line << endl;
         if (this->nickname.compare(line) == 0)
         {
             file.close();
