@@ -30,6 +30,6 @@
 
 #CMake
 CMakeFiles
-cmake*
+cmake_install.cmake
 CmakeCache.txt
 MakeFile
