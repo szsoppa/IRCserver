@@ -12,31 +12,6 @@ void print_error( const char *message )
     exit(EXIT_FAILURE);
 }
 
-void* find_action( void* arg)
-{
-    Message message;
-    int rcv_sck = *( (int *) arg);
-    int received;
-    while ( true )
-    {
-        received = read (rcv_sck, bufor, 1);
-        if (received == 0)
-        {
-            // somethin went wrong
-        }
-        message.set_type((*bufor) - '0');
-        cout << message.get_type() << endl;
-        while( (received = read (rcv_sck, bufor, 1)) > 0)
-        {
-            if(*bufor == '\n')
-                break;
-            message.append_data(bufor);
-            cout << message.get_data() << endl;
-            //write (rcv_sck, bufor, received);
-        }
-    }
-}
-
 void* main_loop( void *arg)
 {
     struct sockaddr_in server_addr, client_addr;
@@ -77,4 +52,44 @@ void* main_loop( void *arg)
     close (sck);
     cout << "Server terminated.";
     exit(EXIT_SUCCESS);
+}
+
+void* find_action( void* arg)
+{
+    Message message;
+    int rcv_sck = *( (int *) arg);
+    int received;
+    while ( true )
+    {
+        received = read (rcv_sck, bufor, 1);
+        if (received == 0)
+        {
+          // somethin went wrong
+        }
+        message.set_type((*bufor) - '0');
+        cout << message.get_type() << endl;
+        while( (received = read (rcv_sck, bufor, 1)) > 0)
+        {
+            if(*bufor == '\n')
+              break;
+              message.append_data(bufor);
+              cout << message.get_data() << endl;
+        }
+        recognize_message(message);
+    }
+}
+
+void recognize_message(Message message)
+{
+    switch(message.get_type())
+    {
+        case 0:
+          User user;
+          if(user.validate(message))
+            user.register;
+          break;
+        case 1:
+
+          break;
+    }
 }

@@ -3,7 +3,6 @@
 
 /* headers */
 #include <stdio.h>
-#include <iostream>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -16,6 +15,10 @@
 #include <errno.h>
 #include <unistd.h>
 #include <stdbool.h>
+
+#include <iostream>
+#include <list>
+#include <vector>
 
 /* defines */
 #define QUEUE_LENGTH 15

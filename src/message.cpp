@@ -38,3 +38,21 @@ const string Message::get_data()
 {
     return this->data;
 }
+
+vector<string> Message::split()
+{
+    string temp;
+    vector<string> message;
+
+    for( string::iterator it=this->data.begin(); it!=this->data.end(); ++it)
+    {
+        while( *it != ',' )
+        {
+            temp.push_back(*it);
+            it++;
+        }
+        message.push_back(temp);
+        temp.clear();
+    }
+    return message;
+}

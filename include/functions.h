@@ -10,6 +10,6 @@ void *main_loop(void *arg);
 void *find_action(void* arg);
 /* Prints error when occured */
 void print_error( const char *message );
-
-//void *
+/* Recognizes message and performe response */
+void recognize_message(Message message);
 #endif

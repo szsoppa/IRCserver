@@ -10,6 +10,14 @@
 functions.h
 /Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/functions.h
 
+/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/message.cpp
+message.h
+/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/message.h
+
+/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/server.cpp
+functions.h
+/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/functions.h
+
 include/functions.h
 server.h
 include/server.h
@@ -22,8 +30,6 @@ include/server.h
 
 include/server.h
 stdio.h
--
-iostream
 -
 sys/types.h
 -
@@ -48,5 +54,11 @@ errno.h
 unistd.h
 -
 stdbool.h
+-
+iostream
+-
+list
+-
+vector
 -
 
