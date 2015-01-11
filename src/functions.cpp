@@ -42,13 +42,14 @@ void* main_loop( void *arg)
         if ((rcv_sck = accept (sck, (struct sockaddr*) &client_addr, (socklen_t*) &rcv_len)) < 0)
             print_error("Error while connecting with client");
         if (rcv_sck >= 0)
-            find_action(&rcv_sck);
-        close (rcv_sck);
-        //if (pthread_create (&client_thread, NULL, find_action, &rcv_sck) != 0)
-        //   print_error("Thread create error");
+        {
+            if (pthread_create (&client_thread, NULL, find_action, &rcv_sck) != 0)
+                print_error("Thread create error");
+        }
+        
 
     }
-    cout << "Server terminated.";
+    close (rcv_sck);
     exit(EXIT_SUCCESS);
 }
 
@@ -87,10 +88,12 @@ void recognize_message(Message message)
         case 1: // User sign in
             if(user.signin(message))
             {
+                cout<<"------ User "<<user.get_nickname()<< " is now logged in ------\n";
                 // co jak się zaloguje
             }
             else
             {
+                cout<<"------ User was unable to log in ------\n";
                 // co jak się nie zaloguje
             }
         default:

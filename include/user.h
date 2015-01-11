@@ -14,6 +14,9 @@ public:
     bool signin(Message message);
     bool check_unique_nickname();
     void add_nickname_to_list();
+    
+    // getters
+    string get_nickname();
 
 private:
     string nickname;
