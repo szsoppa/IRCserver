@@ -38,7 +38,6 @@ bool User::signin(Message message)
     cout << "****** User "<< data[0] << " tries to log in ******\n";
     ifstream file("data/users/users.txt");
     this->nickname = data[2];
-    cout << this->nickname <<endl;
     for(string line; getline( file, line ); )
     {   
         message.clear();

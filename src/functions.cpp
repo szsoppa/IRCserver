@@ -43,6 +43,7 @@ void* main_loop( void *arg)
             print_error("Error while connecting with client");
         if (rcv_sck >= 0)
         {
+            cout << "New client connected! \n";
             if (pthread_create (&client_thread, NULL, find_action, &rcv_sck) != 0)
                 print_error("Thread create error");
         }
@@ -58,27 +59,37 @@ void* find_action( void* arg)
     Message message;
     int rcv_sck = *( (int *) arg);
     int received;
-
-    received = read (rcv_sck, &bufor, 1);
-    if (received == 0)
+    while(true)
     {
-      // somethin went wrong
-    }
-    message.set_type(bufor - '0');
-    while( (received = read (rcv_sck, &bufor, 1)) > 0)
-    {
-        if(bufor == '\n')
-            break;
+        int count = 0;
+        while( (received = read (rcv_sck, &bufor, 1)) > 0)
+        {
+            if (count == 0)
+            {
+                message.set_type(bufor - '0');
+                count++;
+                continue;
+            }
 
-        message.append_data(&bufor);
+            if(bufor == '\n')
+            {
+                recognize_message(message, rcv_sck); 
+                message.clear();
+                break;
+            }
+            message.append_data(&bufor);
+            count++;
+        }
     }
-    recognize_message(message); 
+    
     return NULL;
 }
 
-void recognize_message(Message message)
+void recognize_message(Message message, int sck)
 {
     User user;
+    Message_respond respond;
+    ostringstream ss;
     switch(message.get_type())
     {
         case 0: // User sign up
@@ -89,7 +100,9 @@ void recognize_message(Message message)
             if(user.signin(message))
             {
                 cout<<"------ User "<<user.get_nickname()<< " is now logged in ------\n";
-                // co jak się zaloguje
+                ss << OK;
+                cout << "Wiadomosc : " << ss.str() << "   i dlugosc " << ss.str().length() << endl;
+                write(sck, ss.str().c_str(), ss.str().length());
             }
             else
             {
