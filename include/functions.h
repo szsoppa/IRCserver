@@ -12,6 +12,6 @@ void *find_action(void* arg);
 /* Prints error when occured */
 void print_error( const char *message );
 /* Recognizes message and performe response */
-void recognize_message(Message message);
+void recognize_message(Message message, int sck);
 
 #endif
