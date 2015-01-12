@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/functions.cpp" "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles/build/server.dir/src/functions.cpp.o"
-  "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/message.cpp" "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles/build/server.dir/src/message.cpp.o"
-  "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/server.cpp" "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles/build/server.dir/src/server.cpp.o"
-  "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/src/user.cpp" "/Users/szymon/Documents/informatyka/study/sieci_komputerowe/server/CMakeFiles/build/server.dir/src/user.cpp.o"
+  "/Users/szymon/Dropbox/Uczelnia/Projekty/Sieci Komputerowe/server/src/functions.cpp" "/Users/szymon/Dropbox/Uczelnia/Projekty/Sieci Komputerowe/server/CMakeFiles/build/server.dir/src/functions.cpp.o"
+  "/Users/szymon/Dropbox/Uczelnia/Projekty/Sieci Komputerowe/server/src/message.cpp" "/Users/szymon/Dropbox/Uczelnia/Projekty/Sieci Komputerowe/server/CMakeFiles/build/server.dir/src/message.cpp.o"
+  "/Users/szymon/Dropbox/Uczelnia/Projekty/Sieci Komputerowe/server/src/server.cpp" "/Users/szymon/Dropbox/Uczelnia/Projekty/Sieci Komputerowe/server/CMakeFiles/build/server.dir/src/server.cpp.o"
+  "/Users/szymon/Dropbox/Uczelnia/Projekty/Sieci Komputerowe/server/src/user.cpp" "/Users/szymon/Dropbox/Uczelnia/Projekty/Sieci Komputerowe/server/CMakeFiles/build/server.dir/src/user.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

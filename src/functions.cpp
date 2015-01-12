@@ -101,14 +101,16 @@ void recognize_message(Message message, int sck)
             {
                 cout<<"------ User "<<user.get_nickname()<< " is now logged in ------\n";
                 ss << OK;
-                cout << "Wiadomosc : " << ss.str() << "   i dlugosc " << ss.str().length() << endl;
                 write(sck, ss.str().c_str(), ss.str().length());
             }
             else
             {
                 cout<<"------ User was unable to log in ------\n";
-                // co jak się nie zaloguje
+                ss << DENY;
+                write(sck, ss.str().c_str(), ss.str().length());
             }
+        case 2: // User logged, thread exit
+            exit(EXIT_SUCCESS);
         default:
             break;
     }
