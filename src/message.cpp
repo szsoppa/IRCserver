@@ -1,65 +1,34 @@
 #include "message.h"
 
-Message::Message()
+namespace Message
 {
+namespace Request
+{
+    int SIGNUP = 0;
+    int SIGNIN = 1;
+    int JOIN_CHANNEL = 2;
 }
 
-Message::~Message()
+namespace Respond
 {
+    const int OK = 0;
+    const int DENY = 1;
+    const int NICK_TAKEN = 2;
+    const int WRONG_SIGN_IN_DATA = 3;
+    const int WRONG_SIGN_UP_DATA = 4;
 }
 
-Message::Message(int type, const char *data)
+namespace Data
 {
-    this->type = type;
-    this->data = data;
+    int WRONG_DATA = -1;
 }
 
-void Message::set_type(int type)
+// commands
+namespace Command
 {
-    this->type = type;
+    string CONNECT = "connect";
+    string HELP = "help";
+    string EXIT = "exit";
 }
 
-void Message::set_data(const string data)
-{
-    this->data.append(data);
-}
-
-void Message::append_data(const char *data)
-{
-    this->data.push_back( *data );
-}
-
-int Message::get_type()
-{
-    return this->type;
-}
-
-const string Message::get_data()
-{
-    return this->data;
-}
-
-void Message::clear()
-{
-    this->data.clear();
-    this->type = -1;
-}
-
-vector<string> Message::split()
-{
-    string temp;
-    vector<string> message;
-
-    for( string::iterator it=this->data.begin(); it!=this->data.end(); ++it)
-    {
-        if(*it == ',')
-        {
-            message.push_back(temp);
-            temp.clear();
-            continue;
-        }
-        temp.push_back(*it);
-    }
-    this->data.clear();
-    return message;
 }

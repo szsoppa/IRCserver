@@ -21,7 +21,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include "message_respond.h"
+#include "message.h"
 
 /* defines */
 #define QUEUE_LENGTH 15

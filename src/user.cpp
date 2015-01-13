@@ -8,13 +8,13 @@ User::~User()
 {
 }
 
-bool User::validate(Message message)
+bool User::validate(Data message)
 {
     vector<string> data = message.split();
-    if (data[1].compare(data[2]) == 0)
+    this->login = data[0];
+    this->password = data[1];
+    if (data[1].compare(data[2]) == 0 && !check_if_user_exist())
     {
-        this->login = data[0];
-        this->password = data[1];
         return true;
     }
     return false;
@@ -22,7 +22,6 @@ bool User::validate(Message message)
 
 bool User::signup(void)
 {
-    cout << "****** User "<< this->login << " tries to register ******\n";
     hash<string> hashing;
     ofstream file;
     file.open ("data/users/users.txt", fstream::app);
@@ -31,7 +30,7 @@ bool User::signup(void)
     return true;
 }
 
-bool User::signin(Message message)
+bool User::signin(Data message)
 {
     hash<string> hashing;
     vector<string> data = message.split();
@@ -100,4 +99,33 @@ void User::add_nickname_to_list()
 string User::get_nickname()
 {
     return this->nickname;
+}
+
+bool User::check_if_user_exist()
+{
+    ofstream f;
+    f.open ("data/users/users.txt", fstream::app);
+    f.close();
+    ifstream file("data/users/users.txt");
+    Data message;
+    hash<string> hashing;
+    for(string line; getline( file, line ); )
+    {   
+        message.clear();
+        message.set_data(line);
+        vector<string> temp = message.split();
+        stringstream ss;
+        ss << hashing(this->login);
+        string temp1 = ss.str();
+        ss.str("");
+        ss << hashing(this->password);
+        string temp2 = ss.str();
+
+        if (temp1.compare(temp[0]) == 0)
+        {
+            return true;
+        }
+    }
+    return false; 
+    
 }

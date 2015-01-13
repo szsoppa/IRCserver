@@ -10,12 +10,14 @@ set(GCC_COVERAGE_COMPILE_FLAGS "-Wall")
 add_executable(build/server
   src/server.cpp
   src/functions.cpp
-  src/message.cpp
+  src/data.cpp
   src/user.cpp
+  src/message.cpp
   include/server.h
   include/functions.h
-  include/message.h
+  include/data.h
   include/user.h
+  include/message.h
 )
 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/build)

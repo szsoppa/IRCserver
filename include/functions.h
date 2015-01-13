@@ -2,7 +2,7 @@
 #define FUNCTIONS_H
 
 #include "user.h"
-#include "message.h"
+#include "data.h"
 #include "server.h"
 
 /* Main server loop checks new clients and creates thread for connection */
@@ -11,7 +11,8 @@ void *main_loop(void *arg);
 void *find_action(void* arg);
 /* Prints error when occured */
 void print_error( const char *message );
-/* Recognizes message and performe response */
-void recognize_message(Message message, int sck);
-
+/* Recognizes message and perform response */
+void recognize_message(Data message, int sck);
+/* Sends respond for user request*/
+void send_respond(int sck, int respond);
 #endif

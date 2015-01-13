@@ -56,12 +56,12 @@ void* main_loop( void *arg)
 
 void* find_action( void* arg)
 {
-    Message message;
+    Data message;
     int rcv_sck = *( (int *) arg);
     int received;
+    int count = 0;
     while(true)
     {
-        int count = 0;
         while( (received = read (rcv_sck, &bufor, 1)) > 0)
         {
             if (count == 0)
@@ -75,6 +75,7 @@ void* find_action( void* arg)
             {
                 recognize_message(message, rcv_sck); 
                 message.clear();
+                count = 0;
                 break;
             }
             message.append_data(&bufor);
@@ -85,33 +86,52 @@ void* find_action( void* arg)
     return NULL;
 }
 
-void recognize_message(Message message, int sck)
+void recognize_message(Data message, int sck)
 {
     User user;
-    Message_respond respond;
-    ostringstream ss;
-    switch(message.get_type())
+    int type = message.get_type();
+
+    if( type == Message::Request::SIGNUP )
     {
-        case 0: // User sign up
-            if(user.validate(message))
-                user.signup();
-            break;
-        case 1: // User sign in
-            if(user.signin(message))
-            {
-                cout<<"------ User "<<user.get_nickname()<< " is now logged in ------\n";
-                ss << OK;
-                write(sck, ss.str().c_str(), ss.str().length());
-            }
-            else
-            {
-                cout<<"------ User was unable to log in ------\n";
-                ss << DENY;
-                write(sck, ss.str().c_str(), ss.str().length());
-            }
-        case 2: // User logged, thread exit
-            exit(EXIT_SUCCESS);
-        default:
-            break;
+        if(user.validate(message))
+        {
+            user.signup();
+            send_respond(sck, Message::Respond::OK);
+            cout << "****** User "<< user.get_nickname() << " registered ******\n";
+        }
+        else
+        {
+            send_respond(sck, Message::Respond::DENY);
+            cout << "****** User "<< user.get_nickname() << " was unable to register ******\n";
+        }
     }
+    else if ( type ==  Message::Request::SIGNIN )
+    {
+        if(user.signin(message))
+        {
+            cout<<"------ User "<<user.get_nickname()<< " is now logged in ------\n";
+            send_respond(sck, Message::Respond::OK);
+        }
+        else
+        {
+            cout<<"------ User was unable to log in ------\n";
+            send_respond(sck, Message::Respond::DENY);
+        }
+    }
+    else if( type == Message::Request::JOIN_CHANNEL )
+    {
+        /*
+        if(channel.exist())
+        {
+         
+        } 
+        */
+    }
+}
+
+void send_respond(int sck, int respond)
+{
+    ostringstream ss;
+    ss << respond;
+    write(sck, ss.str().c_str(), ss.str().length());
 }

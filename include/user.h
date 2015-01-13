@@ -1,7 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
-#include "message.h"
+#include "data.h"
 
 class User
 {
@@ -9,10 +9,11 @@ public:
     User();
     ~User();
 
-    bool validate(Message message);
+    bool validate(Data message);
     bool signup();
-    bool signin(Message message);
+    bool signin(Data message);
     bool check_unique_nickname();
+    bool check_if_user_exist();
     void add_nickname_to_list();
     
     // getters

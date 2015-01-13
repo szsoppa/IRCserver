@@ -115,6 +115,30 @@ build/server/fast:
 	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/build
 .PHONY : build/server/fast
 
+src/data.o: src/data.cpp.o
+.PHONY : src/data.o
+
+# target to build an object file
+src/data.cpp.o:
+	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/src/data.cpp.o
+.PHONY : src/data.cpp.o
+
+src/data.i: src/data.cpp.i
+.PHONY : src/data.i
+
+# target to preprocess a source file
+src/data.cpp.i:
+	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/src/data.cpp.i
+.PHONY : src/data.cpp.i
+
+src/data.s: src/data.cpp.s
+.PHONY : src/data.s
+
+# target to generate assembly for a file
+src/data.cpp.s:
+	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/src/data.cpp.s
+.PHONY : src/data.cpp.s
+
 src/functions.o: src/functions.cpp.o
 .PHONY : src/functions.o
 
@@ -220,6 +244,9 @@ help:
 	@echo "... build/server"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... src/data.o"
+	@echo "... src/data.i"
+	@echo "... src/data.s"
 	@echo "... src/functions.o"
 	@echo "... src/functions.i"
 	@echo "... src/functions.s"

@@ -3,26 +3,39 @@
 
 #include "server.h"
 
-class Message
+using namespace std;
+
+namespace Message
 {
-public:
-    Message();
-    Message(int type, const char *data);
-    ~Message();
+namespace Request
+{
+    extern int SIGNUP;
+    extern int SIGNIN;
+    extern int JOIN_CHANNEL;
+}
 
-    // setters and getters
-    void set_type(const int type);
-    void set_data(const string data);
-    void append_data(const char *data);
-    int get_type();
-    const string get_data();
+namespace Respond
+{
+    extern const int DENY;
+    extern const int OK;
+    extern const int NICK_TAKEN;
+    extern const int WRONG_SIGN_IN_DATA;
+    extern const int WRONG_SIGN_UP_DATA;
+}
 
-    // class functionality
-    void clear();
-    vector<string> split();
-private:
-    int type;
-    string data;
-};
+// commands
+namespace Command
+{
+    extern string CONNECT;
+    extern string HELP;
+    extern string EXIT;
+}
 
-#endif
+namespace Data
+{
+    extern int WRONG_DATA;
+}
+
+}
+
+#endif // MESSAGE_H
