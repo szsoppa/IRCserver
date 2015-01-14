@@ -6,7 +6,7 @@ namespace Request
 {
     int SIGNUP = 0;
     int SIGNIN = 1;
-    int JOIN_CHANNEL = 2;
+    int COMMAND = 2;
 }
 
 namespace Respond

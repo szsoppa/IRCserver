@@ -51,7 +51,7 @@ void* main_loop( void *arg)
 
     }
     close (rcv_sck);
-    exit(EXIT_SUCCESS);
+    return NULL;
 }
 
 void* find_action( void* arg)
@@ -60,10 +60,11 @@ void* find_action( void* arg)
     int rcv_sck = *( (int *) arg);
     int received;
     int count = 0;
-    while(true)
+    bool run = true;
+    while(run)
     {
         while( (received = read (rcv_sck, &bufor, 1)) > 0)
-        {
+        {      
             if (count == 0)
             {
                 message.set_type(bufor - '0');
@@ -73,7 +74,7 @@ void* find_action( void* arg)
 
             if(bufor == '\n')
             {
-                recognize_message(message, rcv_sck); 
+                run = recognize_message(message, rcv_sck); 
                 message.clear();
                 count = 0;
                 break;
@@ -86,7 +87,7 @@ void* find_action( void* arg)
     return NULL;
 }
 
-void recognize_message(Data message, int sck)
+bool recognize_message(Data message, int sck)
 {
     User user;
     int type = message.get_type();
@@ -111,6 +112,7 @@ void recognize_message(Data message, int sck)
         {
             cout<<"------ User "<<user.get_nickname()<< " is now logged in ------\n";
             send_respond(sck, Message::Respond::OK);
+            return false;
         }
         else
         {
@@ -118,15 +120,12 @@ void recognize_message(Data message, int sck)
             send_respond(sck, Message::Respond::DENY);
         }
     }
-    else if( type == Message::Request::JOIN_CHANNEL )
+    else if( type == Message::Request::COMMAND )
     {
-        /*
-        if(channel.exist())
-        {
-         
-        } 
-        */
+        cout << "Wysyłam!\n"<< endl;
+        write(sck, "siema\n", 6);
     }
+    return true;
 }
 
 void send_respond(int sck, int respond)

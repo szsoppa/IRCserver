@@ -12,7 +12,7 @@ void *find_action(void* arg);
 /* Prints error when occured */
 void print_error( const char *message );
 /* Recognizes message and perform response */
-void recognize_message(Data message, int sck);
+bool recognize_message(Data message, int sck);
 /* Sends respond for user request*/
 void send_respond(int sck, int respond);
 #endif
