@@ -122,7 +122,9 @@ bool recognize_message(Data message, int sck)
     }
     else if( type == Message::Request::COMMAND )
     {
-        cout << "Wysyłam!\n"<< endl;
+        vector<string> list = Message::ParseMessage(message.get_data());
+        for (vector<string>::iterator it = list.begin(); it != list.end(); it++)
+            cout<<*it << endl;
         write(sck, "siema\n", 6);
     }
     return true;

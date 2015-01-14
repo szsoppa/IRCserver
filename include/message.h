@@ -35,6 +35,9 @@ namespace Data
 {
     extern int WRONG_DATA;
 }
+    int RecognizeType(string message);
+    vector<string> ParseMessage(string message);
+    vector<string> Split(string text);
 
 }
 
