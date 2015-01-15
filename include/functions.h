@@ -15,4 +15,6 @@ void print_error( const char *message );
 bool recognize_message(Data message, int sck);
 /* Sends respond for user request*/
 void send_respond(int sck, int respond);
+
+int respond_to_command(int sck, vector<string> message);
 #endif

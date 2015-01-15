@@ -30,7 +30,8 @@
 build/*
 
 # Data
-data
+data/users
+data/nicknames
 nbproject
 
 #CMake

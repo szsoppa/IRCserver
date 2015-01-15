@@ -24,21 +24,23 @@ namespace Data
 }
 
 // commands
+
+// commands
 namespace Command
 {
-    string CONNECT = "connect";
-    string HELP = "help";
-    string EXIT = "exit";
+    const int CONNECT = 0;
+    const int HELP = 1;
+    const int EXIT = 2;
 }
 
 // methods
 int RecognizeType(string message)
 {
-    if (message.compare(Command::CONNECT) == 0)
+    if (message.compare("connect") == 0)
         return 0;
-    else if (message.compare(Command::HELP) == 0)
+    else if (message.compare("help") == 0)
         return 1;
-    else if (message.compare(Command::EXIT) == 0)
+    else if (message.compare("exit") == 0)
         return 2;
     else return Data::WRONG_DATA;
 }
@@ -48,7 +50,6 @@ vector<string> ParseMessage(string message)
     vector<string> list;
     if (message[0] == '\\')
     {
-        cout << "Parsuje command\n";
         list = Split(message);
         return list;
     }
@@ -66,16 +67,41 @@ vector<string> Split(string text)
         if (*it == ' ' && temp.length()!=0 )
         {
             list.push_back(temp);
-            cout << "wrzucam: " << temp << endl;
             temp.clear();
         }
         else if ( *it == ' ' && temp.length() == 0)
         {
             continue;
         }
-        temp.push_back(*it);         
+        else if ( *it == ',' && temp.length() == 0)
+        {
+            break;
+        }
+        else if ( *it == ',' && temp.length() != 0)
+        {
+            list.push_back(temp);
+            break;
+        }
+        temp.push_back(*it); 
+        cout << temp << endl;
     }
     return list;
+}
+
+string GetHelpMessage()
+{
+    ofstream f;
+    f.open ("data/nicknames/nicknames.txt", fstream::app);
+    f.close();
+    string text;
+    ifstream file("data/help/help.txt");
+    for(string line; getline( file, line ); )
+    {
+        text.append(line);
+        text.push_back('\n');
+    }
+    file.close();
+    return text;
 }
 
 }

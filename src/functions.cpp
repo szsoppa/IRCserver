@@ -47,8 +47,6 @@ void* main_loop( void *arg)
             if (pthread_create (&client_thread, NULL, find_action, &rcv_sck) != 0)
                 print_error("Thread create error");
         }
-        
-
     }
     close (rcv_sck);
     return NULL;
@@ -64,7 +62,8 @@ void* find_action( void* arg)
     while(run)
     {
         while( (received = read (rcv_sck, &bufor, 1)) > 0)
-        {      
+        {   
+            cout << bufor << endl;
             if (count == 0)
             {
                 message.set_type(bufor - '0');
@@ -83,7 +82,6 @@ void* find_action( void* arg)
             count++;
         }
     }
-    
     return NULL;
 }
 
@@ -99,6 +97,7 @@ bool recognize_message(Data message, int sck)
             user.signup();
             send_respond(sck, Message::Respond::OK);
             cout << "****** User "<< user.get_nickname() << " registered ******\n";
+            return false;
         }
         else
         {
@@ -123,9 +122,7 @@ bool recognize_message(Data message, int sck)
     else if( type == Message::Request::COMMAND )
     {
         vector<string> list = Message::ParseMessage(message.get_data());
-        for (vector<string>::iterator it = list.begin(); it != list.end(); it++)
-            cout<<*it << endl;
-        write(sck, "siema\n", 6);
+        respond_to_command(sck,list);
     }
     return true;
 }
@@ -135,4 +132,31 @@ void send_respond(int sck, int respond)
     ostringstream ss;
     ss << respond;
     write(sck, ss.str().c_str(), ss.str().length());
+}
+
+int respond_to_command(int sck, vector<string> message)
+{
+    ostringstream ss;
+    string command = message[0];
+    if (command[0] == '\\')
+    {
+        command.erase(0,1);
+        int command_type = Message::RecognizeType(command);
+        if (command_type == Message::Command::CONNECT)
+        {
+            
+        }
+        else if(command_type == Message::Command::HELP)
+        {
+            cout << "mmmmmm Sending help message mmmmmm\n";
+            string text = Message::GetHelpMessage();
+            ss << text;
+            write(sck, ss.str().c_str(), ss.str().length());
+        }
+        else if(command_type == Message::Command::EXIT)
+        {
+            
+        }
+    }
+    
 }

@@ -26,9 +26,9 @@ namespace Respond
 // commands
 namespace Command
 {
-    extern string CONNECT;
-    extern string HELP;
-    extern string EXIT;
+    extern const int CONNECT;
+    extern const int HELP;
+    extern const int EXIT;
 }
 
 namespace Data
@@ -38,7 +38,7 @@ namespace Data
     int RecognizeType(string message);
     vector<string> ParseMessage(string message);
     vector<string> Split(string text);
-
+    string GetHelpMessage();
 }
 
 #endif // MESSAGE_H

@@ -13,10 +13,12 @@ bool User::validate(Data message)
     vector<string> data = message.split();
     this->login = data[0];
     this->password = data[1];
-    if (data[1].compare(data[2]) == 0 && !check_if_user_exist())
+    if ((data[1].compare(data[2]) == 0) && !check_if_user_exist())
     {
+        cout << "User doesnt exists" << endl;
         return true;
     }
+    cout << "User exists" << endl;
     return false;
 }
 
@@ -53,11 +55,12 @@ bool User::signin(Data message)
         {
             if (!check_unique_nickname())
             {
-                // nickname not unique
+                file.close();
                 return false;
             }
             else 
             {
+                file.close();
                 add_nickname_to_list();
             }
             return true;
@@ -111,6 +114,7 @@ bool User::check_if_user_exist()
     hash<string> hashing;
     for(string line; getline( file, line ); )
     {   
+        cout << line << endl;
         message.clear();
         message.set_data(line);
         vector<string> temp = message.split();
@@ -123,9 +127,13 @@ bool User::check_if_user_exist()
 
         if (temp1.compare(temp[0]) == 0)
         {
+            cout << "User found" << endl;
+            file.close();
             return true;
         }
     }
+    cout << "End of search" << endl;
+    file.close();
     return false; 
     
 }
