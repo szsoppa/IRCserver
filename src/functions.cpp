@@ -198,8 +198,9 @@ bool respond_to_command(int sck, vector<string> message)
     }
     else
     {
-        message[0].push_back('\n');
         string file = channel.find_channel_by_socket(sck);
+        string nickname = channel.find_nickname_by_socket(sck, file);
+        message[0] = nickname + ',' + message[0];
         cout << "HEHEHEHE  "<< file <<endl;
         vector<int> list = channel.descriptor_list(file);
         for(int i=0; i < list.size(); i++)

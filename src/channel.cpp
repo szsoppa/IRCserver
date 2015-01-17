@@ -173,3 +173,25 @@ string Channel::find_channel_by_socket(int socket)
     file.close();
     return line;
 }
+
+string Channel::find_nickname_by_socket(int socket, string file)
+{
+    cout << "FIIIIIIIIILE: " << file << endl;
+    string line("");
+    ifstream f("data/channels/"+file+".txt");
+    Data parser;
+    vector<string> data;
+    for(string line; getline( f, line ); )
+    {    
+        parser.set_data(line);
+        data = parser.split();
+        cout << "[qw][q]w[q]w[q]w[  nick: " << data[0] << endl;
+        if (socket == atoi(data[1].c_str()))
+        {
+            f.close();
+            return data[0];
+        }
+    }
+    f.close();
+    return line;
+}
