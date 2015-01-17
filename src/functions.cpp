@@ -150,7 +150,7 @@ bool respond_to_command(int sck, vector<string> message)
         cout << "User: " << message[1];
         if (command_type == Message::Command::CONNECT)
         {
-            if (message.size() != 3 && !channel.exists(message[1]) ) // also check if channels exists
+            if (message.size() != 3 || !channel.exists(message[1]) ) // also check if channels exists
             {
                 string text = "Unable to connect to channel. Your command is wrong or channel doesn't exist";
                 send_channel_respond(sck, Message::ChannelRespond::DENY, text);
