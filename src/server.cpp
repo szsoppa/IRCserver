@@ -4,6 +4,7 @@ pthread_t  main_thread;
 
 int main(int argc, char **argv)
 {
+    create_channels();
     if ( pthread_create (&main_thread, NULL, main_loop, NULL) != 0) 
     {
         printf ("Thread create error");

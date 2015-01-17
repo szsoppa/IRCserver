@@ -13,11 +13,13 @@ add_executable(build/server
   src/data.cpp
   src/user.cpp
   src/message.cpp
+  src/channel.cpp
   include/server.h
   include/functions.h
   include/data.h
   include/user.h
   include/message.h
+  include/channel.h
 )
 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/build)

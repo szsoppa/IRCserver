@@ -24,13 +24,12 @@ namespace Data
 }
 
 // commands
-
-// commands
 namespace Command
 {
     const int CONNECT = 0;
     const int HELP = 1;
     const int EXIT = 2;
+    const int CHANNEL = 3;
 }
 
 // methods
@@ -42,6 +41,8 @@ int RecognizeType(string message)
         return 1;
     else if (message.compare("exit") == 0)
         return 2;
+    else if (message.compare("channel") == 0)
+        return 3;
     else return Data::WRONG_DATA;
 }
 

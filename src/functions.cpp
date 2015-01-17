@@ -5,6 +5,7 @@ const char *protocol = "tcp";
 char bufor;
 ushort service_port = 4000;
 pthread_mutex_t sock_mutex = PTHREAD_MUTEX_INITIALIZER;
+mutex m;
 
 void print_error( const char *message )
 {
@@ -43,7 +44,7 @@ void* main_loop( void *arg)
             print_error("Error while connecting with client");
         if (rcv_sck >= 0)
         {
-            cout << "New client connected! \n";
+            cout << "New client connected on socket " << rcv_sck << "!\n";
             if (pthread_create (&client_thread, NULL, find_action, &rcv_sck) != 0)
                 print_error("Thread create error");
         }
@@ -136,6 +137,7 @@ void send_respond(int sck, int respond)
 
 int respond_to_command(int sck, vector<string> message)
 {
+    User user;
     ostringstream ss;
     string command = message[0];
     if (command[0] == '\\')
@@ -157,6 +159,30 @@ int respond_to_command(int sck, vector<string> message)
         {
             
         }
+        else if(command_type == Message::Command::CHANNEL)
+        {
+            if (message.size() != 2 ) // also check if channels exists
+                write(sck,"Somme error message",2); // to do
+            else
+            {
+
+            }
+        }
     }
     
+}
+
+void create_channels()
+{
+    string file_name = "data/channels/list/channels.txt";
+    string line;
+    ifstream file(file_name);
+    for(string line; getline( file, line ); )
+    {
+        string file_path = "data/channels/"+line+".txt";
+        remove(file_path.c_str());
+        ofstream channel_file (file_path);
+        channel_file.close();
+    }
+    file.close();
 }

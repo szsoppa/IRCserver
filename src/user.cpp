@@ -135,5 +135,4 @@ bool User::check_if_user_exist()
     cout << "End of search" << endl;
     file.close();
     return false; 
-    
 }

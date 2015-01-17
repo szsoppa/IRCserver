@@ -115,6 +115,30 @@ build/server/fast:
 	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/build
 .PHONY : build/server/fast
 
+src/channel.o: src/channel.cpp.o
+.PHONY : src/channel.o
+
+# target to build an object file
+src/channel.cpp.o:
+	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/src/channel.cpp.o
+.PHONY : src/channel.cpp.o
+
+src/channel.i: src/channel.cpp.i
+.PHONY : src/channel.i
+
+# target to preprocess a source file
+src/channel.cpp.i:
+	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/src/channel.cpp.i
+.PHONY : src/channel.cpp.i
+
+src/channel.s: src/channel.cpp.s
+.PHONY : src/channel.s
+
+# target to generate assembly for a file
+src/channel.cpp.s:
+	$(MAKE) -f CMakeFiles/build/server.dir/build.make CMakeFiles/build/server.dir/src/channel.cpp.s
+.PHONY : src/channel.cpp.s
+
 src/data.o: src/data.cpp.o
 .PHONY : src/data.o
 
@@ -244,6 +268,9 @@ help:
 	@echo "... build/server"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... src/channel.o"
+	@echo "... src/channel.i"
+	@echo "... src/channel.s"
 	@echo "... src/data.o"
 	@echo "... src/data.i"
 	@echo "... src/data.s"

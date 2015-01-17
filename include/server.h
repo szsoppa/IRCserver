@@ -19,8 +19,10 @@
 #include <iostream>
 #include <list>
 #include <vector>
+#include <map>
 #include <fstream>
 #include <sstream>
+#include <mutex>
 #include "message.h"
 
 /* defines */

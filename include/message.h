@@ -29,6 +29,7 @@ namespace Command
     extern const int CONNECT;
     extern const int HELP;
     extern const int EXIT;
+    extern const int CHANNEL;
 }
 
 namespace Data
