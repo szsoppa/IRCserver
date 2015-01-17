@@ -123,7 +123,8 @@ bool recognize_message(Data message, int sck)
     else if( type == Message::Request::COMMAND )
     {
         vector<string> list = Message::ParseMessage(message.get_data());
-        respond_to_command(sck,list);
+        bool run =  respond_to_command(sck,list);
+        return run;
     }
     return true;
 }
@@ -135,7 +136,7 @@ void send_respond(int sck, int respond)
     write(sck, ss.str().c_str(), ss.str().length());
 }
 
-int respond_to_command(int sck, vector<string> message)
+bool respond_to_command(int sck, vector<string> message)
 {
     User user;
     ostringstream ss;
@@ -144,6 +145,8 @@ int respond_to_command(int sck, vector<string> message)
     {
         command.erase(0,1);
         int command_type = Message::RecognizeType(command);
+        cout << "Command: "<<command << endl;
+        cout << "User: " << message[1];
         if (command_type == Message::Command::CONNECT)
         {
             Channel channel;
@@ -173,14 +176,26 @@ int respond_to_command(int sck, vector<string> message)
         }
         else if(command_type == Message::Command::EXIT)
         {
+            cout << "!!!!!!!!!!!!SIEMSA\n";
             send_channel_respond(sck, Message::ChannelRespond::EXIT, "");
+            Channel channel;
+            string file = channel.user_in_another_channel(message[1]);
+            cout << file << endl;
+            channel.delete_user(file,message[1]);
+            vector<int> list = channel.descriptor_list(file);
+            for (int i=0; i<list.size(); i++)
+                cout << "iteracja" << list[i] << endl;
+            sleep(1);
+            for(int i=0; i < list.size(); i++)
+                send_channel_respond(list[i], Message::ChannelRespond::LIST, channel.user_list(file));
+            return false;
         }
         else if(command_type == Message::Command::CHANNEL)
         {
             
         }
     }
-    
+    return true;
 }
 
 void create_channels()

@@ -121,8 +121,9 @@ bool Channel::delete_user(const string &name, const string &user)
         }
         file.close();
         
+        remove(path.c_str());
         ofstream file2;
-        file2.open(path, fstream::app);
+        file2.open(path);
         file2 << text;
         file2.close();
         

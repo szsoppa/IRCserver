@@ -21,7 +21,7 @@ namespace Respond
 namespace ChannelRespond
 {
     const int ACCEPT = 0;
-    const int  DENY = 1;
+    const int DENY = 1;
     const int HELP = 2;
     const int EXIT = 3;
     const int LIST = 4;
