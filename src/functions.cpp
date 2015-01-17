@@ -146,27 +146,36 @@ int respond_to_command(int sck, vector<string> message)
         int command_type = Message::RecognizeType(command);
         if (command_type == Message::Command::CONNECT)
         {
-            
+            Channel channel;
+            if (message.size() != 3 && !channel.exists(message[1]) ) // also check if channels exists
+            {
+                cout << "nope\n";
+                string text = "Unable to connect to channel. Your command is wrong or channel doesn't exist";
+                send_channel_respond(sck, Message::ChannelRespond::DENY, text);
+            }
+            else
+            {
+                string file = channel.user_in_another_channel(message[2]);
+                if (file.length() == 0)
+                    channel.delete_user(file,message[2]);
+                channel.add_user(message[1], message[2], sck);
+                send_channel_respond(sck, Message::ChannelRespond::ACCEPT, "");
+                send_channel_respond(sck, Message::ChannelRespond::LIST, channel.user_list(message[1]));
+            }
         }
         else if(command_type == Message::Command::HELP)
         {
             cout << "mmmmmm Sending help message mmmmmm\n";
             string text = Message::GetHelpMessage();
-            ss << text;
-            write(sck, ss.str().c_str(), ss.str().length());
+            send_channel_respond(sck, Message::ChannelRespond::HELP, text);
         }
         else if(command_type == Message::Command::EXIT)
         {
-            
+            send_channel_respond(sck, Message::ChannelRespond::EXIT, "");
         }
         else if(command_type == Message::Command::CHANNEL)
         {
-            if (message.size() != 2 ) // also check if channels exists
-                write(sck,"Somme error message",2); // to do
-            else
-            {
-
-            }
+            
         }
     }
     
@@ -186,3 +195,21 @@ void create_channels()
     }
     file.close();
 }
+
+void create_users_file()
+{
+    string file_name = "data/signed_users/users.txt";
+    remove(file_name.c_str());
+    ofstream file(file_name);
+    file.close();
+}
+
+void send_channel_respond(int sck, int message_type, string message)
+{
+    ostringstream ss;
+    ss << message_type;
+    ss << message;
+    ss << '\n';
+    write(sck, ss.str().c_str(), ss.str().length());
+}
+

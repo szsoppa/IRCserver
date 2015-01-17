@@ -38,7 +38,19 @@ bool User::signin(Data message)
     vector<string> data = message.split();
     cout << "****** User "<< data[0] << " tries to log in ******\n";
     ifstream file("data/users/users.txt");
+    ifstream file2("data/signed_users/users.txt");
     this->nickname = data[2];
+    
+    for(string line; getline( file2, line); )
+    {
+        if(data[0].compare(line) == 0)
+        {
+            file2.close();
+            return false;
+        }
+    }
+    file2.close();
+    
     for(string line; getline( file, line ); )
     {   
         message.clear();
@@ -62,6 +74,10 @@ bool User::signin(Data message)
             {
                 file.close();
                 add_nickname_to_list();
+                ofstream file;
+                file.open("data/signed_users/users.txt", fstream::app);
+                file << data[0] << '\n';
+                file.close();
             }
             return true;
         }

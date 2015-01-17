@@ -18,6 +18,16 @@ namespace Respond
     const int WRONG_SIGN_UP_DATA = 4;
 }
 
+namespace ChannelRespond
+{
+    const int ACCEPT = 0;
+    const int  DENY = 1;
+    const int HELP = 2;
+    const int EXIT = 3;
+    const int LIST = 4;
+    const int MESSAGE = 5;
+}
+
 namespace Data
 {
     int WRONG_DATA = -1;
@@ -69,6 +79,7 @@ vector<string> Split(string text)
         {
             list.push_back(temp);
             temp.clear();
+            continue;
         }
         else if ( *it == ' ' && temp.length() == 0)
         {

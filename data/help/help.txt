@@ -1,5 +1,5 @@
 Welcome in help!
 List of useful commands:
 - '\connect channel_name' let's you connect to channel
-- '\help\ let's you get present list of commands
+- '\help' let's you get present list of commands
 - '\exit' let's you quit from application

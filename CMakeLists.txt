@@ -24,7 +24,10 @@ add_executable(build/server
 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/build)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data/signed_users)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data/nicknames)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data/users)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data/help)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/data/channels)
 
 target_link_libraries (build/server ${CMAKE_THREAD_LIBS_INIT})

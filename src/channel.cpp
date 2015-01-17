@@ -30,19 +30,21 @@ bool Channel::exists(const string &name)
     return false; 
 }
 
-vector<string> Channel::user_list(const string &name)
+string Channel::user_list(const string &name)
 {
     Data parser;
     vector<string> data;
     string path = "data/channels/" + name + ".txt";
-    vector<string> users;
+    string users;
     ifstream file(path);
     for(string line; getline( file, line ); )
     {
         parser.set_data(line);
         data = parser.split();
-        users.push_back(data[0]);
+        users.append(data[0]);
+        users.push_back(',');
     }
+    users.push_back('\n');
     file.close();
     return users; 
 }
@@ -91,7 +93,7 @@ bool Channel::add_user(const string &name, const string &user, int descriptor)
         string path = "data/channels/" + name + ".txt";
         ofstream file;
         file.open(path, fstream::app);
-        file << name << ',' << descriptor << ',' << '\n';
+        file << user << ',' << descriptor << ',' << '\n';
         file.close();
         return true;
     }
@@ -127,4 +129,18 @@ bool Channel::delete_user(const string &name, const string &user)
         return true;
     }
     return false;
+}
+
+string Channel::user_in_another_channel(const string& user)
+{
+    string file_name = "data/channels/list/channels.txt";
+    string line("");
+    ifstream file(file_name);
+    for(string line; getline( file, line ); )
+    {
+        if(user_in(line, user))
+            return line;
+    }
+    file.close();
+    return line;
 }

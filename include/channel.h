@@ -17,12 +17,13 @@ class Channel {
 public:
     Channel();
     Channel(const Channel& orig);
-    vector<string> user_list(const string &name);
+    string user_list(const string &name);
     vector<int> descriptor_list(const string &name);
     bool user_in(const string &name, const string &user);
     bool exists(const string &name);
     bool add_user(const string &name, const string &user, int descriptor);
     bool delete_user(const string &name, const string &user);
+    string user_in_another_channel(const string &user);
     
     virtual ~Channel();
    

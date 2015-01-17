@@ -4,6 +4,7 @@
 #include "user.h"
 #include "data.h"
 #include "server.h"
+#include "channel.h"
 
 /* Generates channels files */
 void create_channels();
@@ -19,5 +20,9 @@ bool recognize_message(Data message, int sck);
 void send_respond(int sck, int respond);
 /* Sends respond to message send by user from command line in client */
 int respond_to_command(int sck, vector<string> message);
+/* Sends respond to a channel */
+void send_channel_respond(int sck, int message_type, string messag);
+/* Generate file for list of signed in users */
+void create_users_file();
 
 #endif

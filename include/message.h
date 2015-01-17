@@ -23,6 +23,16 @@ namespace Respond
     extern const int WRONG_SIGN_UP_DATA;
 }
 
+namespace ChannelRespond
+{
+    extern const int ACCEPT;
+    extern const int DENY;
+    extern const int HELP;
+    extern const int EXIT;
+    extern const int LIST;
+    extern const int MESSAGE;
+}
+
 // commands
 namespace Command
 {
