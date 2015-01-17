@@ -52,13 +52,13 @@ vector<int> Channel::descriptor_list(const string &name)
     Data parser;
     vector<string> data;
     string path = "data/channels/" + name + ".txt";
-    vector<string> descriptors;
+    vector<int> descriptors;
     ifstream file(path);
     for(string line; getline( file, line ); )
     {
         parser.set_data(line);
         data = parser.split();
-        descriptors.push_back(data[1]);
+        descriptors.push_back(atoi(data[1].c_str()));
     }
     file.close();
     return descriptors; 
