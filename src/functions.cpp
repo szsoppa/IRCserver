@@ -149,7 +149,6 @@ int respond_to_command(int sck, vector<string> message)
             Channel channel;
             if (message.size() != 3 && !channel.exists(message[1]) ) // also check if channels exists
             {
-                cout << "nope\n";
                 string text = "Unable to connect to channel. Your command is wrong or channel doesn't exist";
                 send_channel_respond(sck, Message::ChannelRespond::DENY, text);
             }
@@ -159,8 +158,11 @@ int respond_to_command(int sck, vector<string> message)
                 if (file.length() == 0)
                     channel.delete_user(file,message[2]);
                 channel.add_user(message[1], message[2], sck);
-                send_channel_respond(sck, Message::ChannelRespond::ACCEPT, "");
-                send_channel_respond(sck, Message::ChannelRespond::LIST, channel.user_list(message[1]));
+                send_channel_respond(sck, Message::ChannelRespond::ACCEPT, message[1]);
+                sleep(1);
+                vector<int> list = channel.descriptor_list(message[1]);
+                for(int i=0; i < list.size(); i++)
+                    send_channel_respond(list[i], Message::ChannelRespond::LIST, channel.user_list(message[1]));
             }
         }
         else if(command_type == Message::Command::HELP)
@@ -199,6 +201,14 @@ void create_channels()
 void create_users_file()
 {
     string file_name = "data/signed_users/users.txt";
+    remove(file_name.c_str());
+    ofstream file(file_name);
+    file.close();
+}
+
+void create_nicknames_file()
+{
+    string file_name = "data/nicknames/nicknames.txt";
     remove(file_name.c_str());
     ofstream file(file_name);
     file.close();

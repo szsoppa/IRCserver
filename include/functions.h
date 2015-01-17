@@ -24,5 +24,7 @@ int respond_to_command(int sck, vector<string> message);
 void send_channel_respond(int sck, int message_type, string messag);
 /* Generate file for list of signed in users */
 void create_users_file();
+/* Generate file for list of signed in users nicknames*/
+void create_nicknames_file();
 
 #endif

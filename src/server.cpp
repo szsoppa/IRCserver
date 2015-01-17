@@ -6,6 +6,7 @@ int main(int argc, char **argv)
 {
     create_channels();
     create_users_file();
+    create_nicknames_file();
     if ( pthread_create (&main_thread, NULL, main_loop, NULL) != 0) 
     {
         printf ("Thread create error");
