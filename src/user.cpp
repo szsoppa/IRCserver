@@ -120,6 +120,11 @@ string User::get_nickname()
     return this->nickname;
 }
 
+void User::set_nickname(string nickname)
+{
+    this->nickname = nickname;
+}
+
 bool User::check_if_user_exist()
 {
     ofstream f;
@@ -151,4 +156,34 @@ bool User::check_if_user_exist()
     cout << "End of search" << endl;
     file.close();
     return false; 
+}
+
+void User::remove_nickname()
+{
+    Data parser;
+    string temp;
+    string text;
+    ifstream file("data/nicknames/nicknames.txt");
+    for(string line; getline( file, line ); )
+    {   
+        for (int i=0; i < line.length(); i++)
+        {
+            if(line[i] == ',')
+            {
+                break;
+            }
+            temp.push_back(line[i]);
+        }
+        if (temp.compare(this->nickname) != 0)
+        {
+            text.append(line + '\n');
+        }
+        temp.clear();
+    }
+    file.close();
+    
+    ofstream file2;
+    file2.open("data/nicknames/nicknames.txt");
+    file2 << text;
+    file2.close();
 }

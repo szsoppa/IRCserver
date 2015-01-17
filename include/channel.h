@@ -24,6 +24,7 @@ public:
     bool add_user(const string &name, const string &user, int descriptor);
     bool delete_user(const string &name, const string &user);
     string user_in_another_channel(const string &user);
+    string find_channel_by_socket(int socket);
     
     virtual ~Channel();
    

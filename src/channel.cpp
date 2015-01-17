@@ -145,3 +145,31 @@ string Channel::user_in_another_channel(const string& user)
     file.close();
     return line;
 }
+
+string Channel::find_channel_by_socket(int socket)
+{
+    string file_name = "data/channels/list/channels.txt";
+    string line("");
+    ifstream file(file_name);
+    Data parser;
+    vector<string> data;
+    for(string line; getline( file, line ); )
+    {
+        string path = "data/channels/" + line + ".txt";
+        ifstream file2(path);
+        for(string line2; getline( file2, line2 ); )
+        {   
+            parser.set_data(line2);
+            data = parser.split();
+            if (socket == atoi(data[1].c_str()))
+            {
+                file2.close();
+                file.close();
+                return line;
+            }
+        }
+        file2.close();
+    }
+    file.close();
+    return line;
+}

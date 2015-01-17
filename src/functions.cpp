@@ -123,8 +123,7 @@ bool recognize_message(Data message, int sck)
     else if( type == Message::Request::COMMAND )
     {
         vector<string> list = Message::ParseMessage(message.get_data());
-        bool run =  respond_to_command(sck,list);
-        return run;
+        return respond_to_command(sck,list);
     }
     return true;
 }
@@ -139,8 +138,10 @@ void send_respond(int sck, int respond)
 bool respond_to_command(int sck, vector<string> message)
 {
     User user;
+    Channel channel;
     ostringstream ss;
     string command = message[0];
+    cout << "@@@@@@Command: " << message[0];
     if (command[0] == '\\')
     {
         command.erase(0,1);
@@ -149,7 +150,6 @@ bool respond_to_command(int sck, vector<string> message)
         cout << "User: " << message[1];
         if (command_type == Message::Command::CONNECT)
         {
-            Channel channel;
             if (message.size() != 3 && !channel.exists(message[1]) ) // also check if channels exists
             {
                 string text = "Unable to connect to channel. Your command is wrong or channel doesn't exist";
@@ -178,7 +178,8 @@ bool respond_to_command(int sck, vector<string> message)
         {
             cout << "!!!!!!!!!!!!SIEMSA\n";
             send_channel_respond(sck, Message::ChannelRespond::EXIT, "");
-            Channel channel;
+            user.set_nickname(message[1]);
+            user.remove_nickname();
             string file = channel.user_in_another_channel(message[1]);
             cout << file << endl;
             channel.delete_user(file,message[1]);
@@ -194,6 +195,15 @@ bool respond_to_command(int sck, vector<string> message)
         {
             
         }
+    }
+    else
+    {
+        message[0].push_back('\n');
+        string file = channel.find_channel_by_socket(sck);
+        cout << "HEHEHEHE  "<< file <<endl;
+        vector<int> list = channel.descriptor_list(file);
+        for(int i=0; i < list.size(); i++)
+            send_channel_respond(list[i], Message::ChannelRespond::MESSAGE, message[0]);
     }
     return true;
 }
