@@ -37,24 +37,19 @@ bool User::signin(Data message)
     hash<string> hashing;
     vector<string> data = message.split();
     cout << "****** User "<< data[0] << " tries to log in ******\n";
-    ofstream temp("data/users/users.txt");
-    temp.close();
-    ifstream file("data/users/users.txt");
-    ofstream temp2("data/signed_users/users.txt");
-    temp2.close();
-    temp.close();
-    ifstream file2("data/signed_users/users.txt");
+    ifstream file("data/users/users.txt", ifstream::out);
+    ifstream file2("data/signed_users/users.txt", ifstream::out);
     this->nickname = data[2];
     
     for(string line; getline( file2, line); )
     {
         if(data[0].compare(line) == 0)
         {
+            file.close();
             file2.close();
             return false;
         }
     }
-    file2.close();
     
     for(string line; getline( file, line ); )
     {   
@@ -73,22 +68,25 @@ bool User::signin(Data message)
             if (!check_unique_nickname())
             {
                 file.close();
+                file2.close();
                 return false;
             }
             else 
             {
                 file.close();
+                file2.close();
                 add_nickname_to_list();
-                ofstream file;
-                file.open("data/signed_users/users.txt", fstream::app);
-                file << data[0] << '\n';
-                file.close();
+                ofstream f;
+                f.open("data/signed_users/users.txt", fstream::app);
+                f << data[0] << '\n';
+                f.close();
+                return true;
             }
-            return true;
         }
     }
     file.close();
-    return true;
+    file2.close();
+    return false;
 }
 
 bool User::check_unique_nickname()
