@@ -158,8 +158,13 @@ bool respond_to_command(int sck, vector<string> message)
             else
             {
                 string file = channel.user_in_another_channel(message[2]);
-                if (file.length() == 0)
+                if (file.length() != 0)
+                {
                     channel.delete_user(file,message[2]);
+                    vector<int> list = channel.descriptor_list(file);
+                    for(int i=0; i < list.size(); i++)
+                        send_channel_respond(list[i], Message::ChannelRespond::LIST, channel.user_list(message[1]));
+                }
                 channel.add_user(message[1], message[2], sck);
                 send_channel_respond(sck, Message::ChannelRespond::ACCEPT, message[1]);
                 sleep(1);
