@@ -52,7 +52,6 @@ vector<string> Data::split()
 
     for( string::iterator it=this->data.begin(); it!=this->data.end(); ++it)
     {
-        cout << *it << endl;
         if(*it == ',')
         {
             message.push_back(temp);
@@ -61,12 +60,10 @@ vector<string> Data::split()
         }
         else if (*it == '\n')
         {
-            cout << "New line found " << endl;
             break;
         }
         temp.push_back(*it);
     }
-    cout << "End of split" << endl;
     this->data.clear();
     return message;
 }

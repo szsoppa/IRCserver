@@ -44,7 +44,6 @@ void* main_loop( void *arg)
             print_error("Error while connecting with client");
         if (rcv_sck >= 0)
         {
-            cout << "New client connected on socket " << rcv_sck << "!\n";
             if (pthread_create (&client_thread, NULL, find_action, &rcv_sck) != 0)
                 print_error("Thread create error");
         }
@@ -64,7 +63,6 @@ void* find_action( void* arg)
     {
         while( (received = read (rcv_sck, &bufor, 1)) > 0)
         {   
-            cout << bufor << endl;
             if (count == 0)
             {
                 message.set_type(bufor - '0');
@@ -74,7 +72,7 @@ void* find_action( void* arg)
 
             if(bufor == '\n')
             {
-                run = recognize_message(message, rcv_sck); 
+                run = recognize_message(message, rcv_sck);
                 message.clear();
                 count = 0;
                 break;
@@ -97,26 +95,22 @@ bool recognize_message(Data message, int sck)
         {
             user.signup();
             send_respond(sck, Message::Respond::OK);
-            cout << "****** User "<< user.get_nickname() << " registered ******\n";
             return false;
         }
         else
         {
             send_respond(sck, Message::Respond::DENY);
-            cout << "****** User "<< user.get_nickname() << " was unable to register ******\n";
         }
     }
     else if ( type ==  Message::Request::SIGNIN )
     {
         if(user.signin(message))
         {
-            cout<<"------ User "<<user.get_nickname()<< " is now logged in ------\n";
             send_respond(sck, Message::Respond::OK);
             return false;
         }
         else
         {
-            cout<<"------ User was unable to log in ------\n";
             send_respond(sck, Message::Respond::DENY);
         }
     }
@@ -141,13 +135,10 @@ bool respond_to_command(int sck, vector<string> message)
     Channel channel;
     ostringstream ss;
     string command = message[0];
-    cout << "@@@@@@Command: " << message[0];
     if (command[0] == '\\')
     {
         command.erase(0,1);
         int command_type = Message::RecognizeType(command);
-        cout << "Command: "<<command << endl;
-        cout << "User: " << message[1];
         if (command_type == Message::Command::CONNECT)
         {
             if (message.size() != 3 || !channel.exists(message[1]) ) // also check if channels exists
@@ -175,22 +166,17 @@ bool respond_to_command(int sck, vector<string> message)
         }
         else if(command_type == Message::Command::HELP)
         {
-            cout << "mmmmmm Sending help message mmmmmm\n";
             string text = Message::GetHelpMessage();
             send_channel_respond(sck, Message::ChannelRespond::HELP, text);
         }
         else if(command_type == Message::Command::EXIT)
         {
-            cout << "!!!!!!!!!!!!SIEMSA\n";
             send_channel_respond(sck, Message::ChannelRespond::EXIT, "");
             user.set_nickname(message[1]);
             user.remove_nickname();
             string file = channel.user_in_another_channel(message[1]);
-            cout << file << endl;
             channel.delete_user(file,message[1]);
             vector<int> list = channel.descriptor_list(file);
-            for (int i=0; i<list.size(); i++)
-                cout << "iteracja" << list[i] << endl;
             sleep(1);
             for(int i=0; i < list.size(); i++)
                 send_channel_respond(list[i], Message::ChannelRespond::LIST, channel.user_list(file));
@@ -198,7 +184,7 @@ bool respond_to_command(int sck, vector<string> message)
         }
         else if(command_type == Message::Command::CHANNEL)
         {
-            
+
         }
     }
     else
@@ -206,7 +192,6 @@ bool respond_to_command(int sck, vector<string> message)
         string file = channel.find_channel_by_socket(sck);
         string nickname = channel.find_nickname_by_socket(sck, file);
         message[0] = nickname + ',' + message[0];
-        cout << "HEHEHEHE  "<< file <<endl;
         vector<int> list = channel.descriptor_list(file);
         for(int i=0; i < list.size(); i++)
             send_channel_respond(list[i], Message::ChannelRespond::MESSAGE, message[0]);
@@ -253,4 +238,3 @@ void send_channel_respond(int sck, int message_type, string message)
     ss << '\n';
     write(sck, ss.str().c_str(), ss.str().length());
 }
-

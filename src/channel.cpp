@@ -2,24 +2,24 @@
 
 Channel::Channel()
 {
-    
+
 }
 
 Channel::Channel(const Channel& orig)
 {
-    
+
 }
 
 Channel::~Channel()
 {
-    
+
 }
 
 bool Channel::exists(const string &name)
 {
     ifstream file("data/channels/list/channels.txt");
     for(string line; getline( file, line ); )
-    {   
+    {
         if (line.compare(name) == 0)
         {
             file.close();
@@ -27,7 +27,7 @@ bool Channel::exists(const string &name)
         }
     }
     file.close();
-    return false; 
+    return false;
 }
 
 string Channel::user_list(const string &name)
@@ -46,7 +46,7 @@ string Channel::user_list(const string &name)
     }
     users.push_back('\n');
     file.close();
-    return users; 
+    return users;
 }
 
 vector<int> Channel::descriptor_list(const string &name)
@@ -63,7 +63,7 @@ vector<int> Channel::descriptor_list(const string &name)
         descriptors.push_back(atoi(data[1].c_str()));
     }
     file.close();
-    return descriptors; 
+    return descriptors;
 }
 
 bool Channel::user_in(const string &name, const string &user)
@@ -73,7 +73,7 @@ bool Channel::user_in(const string &name, const string &user)
     string path = "data/channels/" + name + ".txt";
     ifstream file(path);
     for(string line; getline( file, line ); )
-    {   
+    {
         parser.set_data(line);
         data = parser.split();
         if (user.compare(data[0]) == 0)
@@ -83,7 +83,7 @@ bool Channel::user_in(const string &name, const string &user)
         }
     }
     file.close();
-    return false; 
+    return false;
 }
 
 bool Channel::add_user(const string &name, const string &user, int descriptor)
@@ -110,7 +110,7 @@ bool Channel::delete_user(const string &name, const string &user)
         string path = "data/channels/" + name + ".txt";
         ifstream file(path);
         for(string line; getline( file, line ); )
-        {   
+        {
             parser.set_data(line);
             data = parser.split();
             if (user.compare(data[0]) != 0)
@@ -120,13 +120,30 @@ bool Channel::delete_user(const string &name, const string &user)
             }
         }
         file.close();
-        
         remove(path.c_str());
         ofstream file2;
         file2.open(path);
         file2 << text;
         file2.close();
-        
+
+        text.clear();
+        path = "data/signed_users/users.txt";
+        file.open(path);
+        for(string line; getline( file, line ); )
+        {
+            parser.set_data(line);
+            data = parser.split();
+            if (user.compare(line) != 0)
+            {
+                line = line + '\n';
+                text.append(line);
+            }
+        }
+        file.close();
+        remove(path.c_str());
+        file2.open(path);
+        file2 << text;
+        file2.close();
         return true;
     }
     return false;
@@ -158,7 +175,7 @@ string Channel::find_channel_by_socket(int socket)
         string path = "data/channels/" + line + ".txt";
         ifstream file2(path);
         for(string line2; getline( file2, line2 ); )
-        {   
+        {
             parser.set_data(line2);
             data = parser.split();
             if (socket == atoi(data[1].c_str()))
@@ -176,16 +193,14 @@ string Channel::find_channel_by_socket(int socket)
 
 string Channel::find_nickname_by_socket(int socket, string file)
 {
-    cout << "FIIIIIIIIILE: " << file << endl;
     string line("");
     ifstream f("data/channels/"+file+".txt");
     Data parser;
     vector<string> data;
     for(string line; getline( f, line ); )
-    {    
+    {
         parser.set_data(line);
         data = parser.split();
-        cout << "[qw][q]w[q]w[q]w[  nick: " << data[0] << endl;
         if (socket == atoi(data[1].c_str()))
         {
             f.close();

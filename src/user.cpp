@@ -15,10 +15,8 @@ bool User::validate(Data message)
     this->password = data[1];
     if ((data[1].compare(data[2]) == 0) && !check_if_user_exist())
     {
-        cout << "User doesnt exists" << endl;
         return true;
     }
-    cout << "User exists" << endl;
     return false;
 }
 
@@ -36,11 +34,10 @@ bool User::signin(Data message)
 {
     hash<string> hashing;
     vector<string> data = message.split();
-    cout << "****** User "<< data[0] << " tries to log in ******\n";
     ifstream file("data/users/users.txt", ifstream::out);
     ifstream file2("data/signed_users/users.txt", ifstream::out);
     this->nickname = data[2];
-    
+
     for(string line; getline( file2, line); )
     {
         if(data[0].compare(line) == 0)
@@ -50,9 +47,9 @@ bool User::signin(Data message)
             return false;
         }
     }
-    
+
     for(string line; getline( file, line ); )
-    {   
+    {
         message.clear();
         message.set_data(line);
         vector<string> temp = message.split();
@@ -71,7 +68,7 @@ bool User::signin(Data message)
                 file2.close();
                 return false;
             }
-            else 
+            else
             {
                 file.close();
                 file2.close();
@@ -97,7 +94,7 @@ bool User::check_unique_nickname()
     ifstream file("data/nicknames/nicknames.txt");
     for(string line; getline( file, line ); )
     {
-        size_t pos = line.find(',');      
+        size_t pos = line.find(',');
         line = line.substr(0,pos);
         if (this->nickname.compare(line) == 0)
         {
@@ -111,7 +108,6 @@ bool User::check_unique_nickname()
 
 void User::add_nickname_to_list()
 {
-    cout << "++++++ Adding new nickname ++++++\n";
     ofstream file;
     file.open("data/nicknames/nicknames.txt", fstream::app);
     file << this->nickname << ',' << '\n';
@@ -137,8 +133,7 @@ bool User::check_if_user_exist()
     Data message;
     hash<string> hashing;
     for(string line; getline( file, line ); )
-    {   
-        cout << line << endl;
+    {
         message.clear();
         message.set_data(line);
         vector<string> temp = message.split();
@@ -151,14 +146,12 @@ bool User::check_if_user_exist()
 
         if (temp1.compare(temp[0]) == 0)
         {
-            cout << "User found" << endl;
             file.close();
             return true;
         }
     }
-    cout << "End of search" << endl;
     file.close();
-    return false; 
+    return false;
 }
 
 void User::remove_nickname()
@@ -168,7 +161,7 @@ void User::remove_nickname()
     string text;
     ifstream file("data/nicknames/nicknames.txt");
     for(string line; getline( file, line ); )
-    {   
+    {
         for (int i=0; i < line.length(); i++)
         {
             if(line[i] == ',')
@@ -184,7 +177,7 @@ void User::remove_nickname()
         temp.clear();
     }
     file.close();
-    
+
     ofstream file2;
     file2.open("data/nicknames/nicknames.txt");
     file2 << text;
